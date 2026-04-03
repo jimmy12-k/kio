@@ -1,15 +1,151 @@
-<div class="menu">
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circular Menu</title>
 
-<div class="toggle">
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
 
-<ion-icon name="share-social"></ion-icon>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-</div>
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
 
-<li style="-i: 0; clr: #1877f2">
+    /* menu */
+    .menu {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-<a href="#"><i class="fab fa-facebook-f"></i></a>
+    /* toggle button */
+    .menu .toggle {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 1.25s;
+      z-index: 10;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
 
-<<li>
+    .menu.active .toggle {
+      transform: rotate(315deg);
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.15),
+        0 0 0 2px #333,
+        0 0 0 8px #fff;
+    }
 
-</div>
+    /* menu items */
+    .menu li {
+      position: absolute;
+      list-style: none;
+      left: 110px;
+      transform-origin: 30px 30px;
+      transition: 0.5s;
+      transition-delay: calc(0.08s * var(--i));
+      transform: rotate(0deg) translateY(-100px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .menu.active li {
+      opacity: 1;
+      pointer-events: auto;
+      transform: rotate(calc(360deg / 8 * var(--i))) translateY(-100px);
+    }
+
+    .menu li a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 55px;
+      height: 55px;
+      background: #fff;
+      border-radius: 50%;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.3rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+      transition: 0.3s;
+      transform: rotate(calc(-360deg / 8 * var(--i)));
+    }
+
+    .menu li a:hover {
+      background: #333;
+      color: #fff;
+      transform: rotate(calc(-360deg / 8 * var(--i))) scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu">
+    <div class="toggle">
+      <i class="fa-solid fa-plus"></i>
+    </div>
+
+    <li style="--i:0;">
+      <a href="#"><i class="fa-solid fa-house"></i></a>
+    </li>
+    <li style="--i:1;">
+      <a href="#"><i class="fa-solid fa-user"></i></a>
+    </li>
+    <li style="--i:2;">
+      <a href="#"><i class="fa-solid fa-gear"></i></a>
+    </li>
+    <li style="--i:3;">
+      <a href="#"><i class="fa-solid fa-envelope"></i></a>
+    </li>
+    <li style="--i:4;">
+      <a href="#"><i class="fa-solid fa-camera"></i></a>
+    </li>
+    <li style="--i:5;">
+      <a href="#"><i class="fa-solid fa-heart"></i></a>
+    </li>
+    <li style="--i:6;">
+      <a href="#"><i class="fa-solid fa-bell"></i></a>
+    </li>
+    <li style="--i:7;">
+      <a href="#"><i class="fa-solid fa-moon"></i></a>
+    </li>
+  </div>
+
+  <script>
+    let menu = document.querySelector(".menu");
+    let toggle = document.querySelector(".toggle");
+
+    toggle.onclick = function () {
+      menu.classList.toggle("active");
+    };
+  </script>
+
+</body>
+</html>
